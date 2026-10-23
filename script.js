@@ -27,12 +27,12 @@ function findMaxVolume(volumes) {
 }
 
 function filterLoudTracks(volumes, threshold) {
-    result = [];
+    let result = [];
         for (let v of volumes) {
-            if (v >= threshold)
+            if (v > threshold)
                 result.push(v);
         }
-    return result
+    return result;
 }
 
 function calculateSum(volumes) {
@@ -47,4 +47,4 @@ const loudTracks = filterLoudTracks(trackVolumes, 90);
 const sum = calculateSum(trackVolumes);
 const averageVolume = sum / trackVolumes.length;
 
-alert("Средняя громкость - " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков - громкие");
+alert("средняя громкость - " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков - громкие");
