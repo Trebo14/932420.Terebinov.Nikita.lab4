@@ -46,5 +46,22 @@ const maxVol = findMaxVolume(trackVolumes);
 const loudTracks = filterLoudTracks(trackVolumes, 90);
 const sum = calculateSum(trackVolumes);
 const averageVolume = sum / trackVolumes.length;
-
 alert("средняя громкость - " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков - громкие");
+
+let quietSum = 0;
+for (let tV of trackVolumes) {
+    if (tV <= 75)
+        quietSum += tV;
+}
+
+let averageQuietVolume = 0;
+if (quietTracks > 0)
+    averageQuietVolume = quietSum / quietTracks;
+
+console.log("количество тихих треков: " + quietTracks);
+console.log("средняя громкость тихих треков: " + averageQuietVolume.toFixed(1) + " дБ");
+
+if (maxVol >= 105) {
+    console.log("Такая громкость может повредить слух - используйте наушники с ограничением");
+}
+
