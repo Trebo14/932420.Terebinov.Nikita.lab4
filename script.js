@@ -6,15 +6,6 @@ alert("Привет, " + userName + "! Добро пожаловать на ст
 console.log("Пользователь " + userName + " зашёл на страницу");
 
 const trackVolumes = [70, 85, 110, 65, 92, 75, 105]; 
-let quietTracks = 0;
-console.log("Поиск тихих треков (до 75 дБ) ... ");
-
-for (let i = 0; i < trackVolumes.length; ++i) {
-    if (trackVolumes[i] <= 75) {
-        quietTracks++;
-        console.log("Найден трек с громкостью " + trackVolumes[i] + " дБ");
-    }
-}
 
 function findMaxVolume(volumes) {
     let max = volumes[0];
@@ -27,10 +18,10 @@ function findMaxVolume(volumes) {
 
 function filterLoudTracks(volumes, threshold) {
     let result = [];
-        for (let v of volumes) {
-            if (v > threshold)
-                result.push(v);
-        }
+    for (let v of volumes) {
+        if (v > threshold)
+            result.push(v);
+    }
     return result;
 }
 
@@ -41,24 +32,32 @@ function calculateSum(volumes) {
     return sum;
 }
 
+function analyzeQuietTracks(volumes) {
+    let count = 0;
+    let sum = 0;
+    for (let v of volumes) {
+        if (v <= 75) {
+            count++;
+            sum += v;
+        }
+    }
+    
+    return { 
+        count: count, 
+        average: count > 0 ? sum / count : 0
+    };
+}
+
 const maxVol = findMaxVolume(trackVolumes);
 const loudTracks = filterLoudTracks(trackVolumes, 90);
 const sum = calculateSum(trackVolumes);
 const averageVolume = sum / trackVolumes.length;
+const quietStats = analyzeQuietTracks(trackVolumes);
+
 alert("Средняя громкость – " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков – громкие");
 
-let quietSum = 0;
-for (let tV of trackVolumes) {
-    if (tV <= 75)
-        quietSum += tV;
-}
-
-let averageQuietVolume = 0;
-if (quietTracks > 0)
-    averageQuietVolume = quietSum / quietTracks;
-
-console.log("Количество тихих треков – " + quietTracks);
-console.log("Средняя громкость тихих треков – " + averageQuietVolume.toFixed(1) + " дБ");
+console.log("Количество тихих треков – " + quietStats.count);
+console.log("Средняя громкость тихих треков – " + quietStats.average.toFixed(1) + " дБ");
 
 if (maxVol >= 105) {
     console.log("Такая громкость может повредить слух – используйте наушники с ограничением");
