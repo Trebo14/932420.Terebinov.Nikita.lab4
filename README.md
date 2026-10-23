@@ -33,6 +33,12 @@
   - `pc.jpg`
   - `sg.jpg`
   - `smon.jpg`
+- `examples`
+  - `alert1.png`
+  - `alert2.png`
+  - `alert3.png`
+  - `console.png`
+  - `console_example.png`
 - `.gitignore`
 - `README.md`
 
