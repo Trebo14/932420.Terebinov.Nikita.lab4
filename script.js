@@ -1,21 +1,20 @@
-let userName = prompt("введите ваше имя:", "Никита");
+let userName = prompt("Введите ваше имя:", "Гость");
 if (userName === null || userName === "")
     userName = "Гость";
 
 alert("Привет, " + userName + "! Добро пожаловать на страницу музыканта и звукорежиссёра.");
-console.log("Пользователь " + userName + " зашел на страницу.");
+console.log("Пользователь " + userName + " зашёл на страницу");
 
 const trackVolumes = [70, 85, 110, 65, 92, 75, 105]; 
 let quietTracks = 0;
-console.log("поиск тихих треков (до 75 дБ) ...");
+console.log("Поиск тихих треков (до 75 дБ) ... ");
 
 for (let i = 0; i < trackVolumes.length; ++i) {
     if (trackVolumes[i] <= 75) {
         quietTracks++;
-        console.log("найден трек с громкостью " + trackVolumes[i] + " дБ");
+        console.log("Найден трек с громкостью " + trackVolumes[i] + " дБ");
     }
 }
-console.log("всего тихих треков: " + quietTracks);
 
 function findMaxVolume(volumes) {
     let max = volumes[0];
@@ -46,7 +45,7 @@ const maxVol = findMaxVolume(trackVolumes);
 const loudTracks = filterLoudTracks(trackVolumes, 90);
 const sum = calculateSum(trackVolumes);
 const averageVolume = sum / trackVolumes.length;
-alert("средняя громкость - " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков - громкие");
+alert("Средняя громкость – " + averageVolume.toFixed(1) + " дБ, " + loudTracks.length + " треков – громкие");
 
 let quietSum = 0;
 for (let tV of trackVolumes) {
@@ -58,10 +57,10 @@ let averageQuietVolume = 0;
 if (quietTracks > 0)
     averageQuietVolume = quietSum / quietTracks;
 
-console.log("количество тихих треков: " + quietTracks);
-console.log("средняя громкость тихих треков: " + averageQuietVolume.toFixed(1) + " дБ");
+console.log("Количество тихих треков – " + quietTracks);
+console.log("Средняя громкость тихих треков – " + averageQuietVolume.toFixed(1) + " дБ");
 
 if (maxVol >= 105) {
-    console.log("Такая громкость может повредить слух - используйте наушники с ограничением");
+    console.log("Такая громкость может повредить слух – используйте наушники с ограничением");
 }
 
